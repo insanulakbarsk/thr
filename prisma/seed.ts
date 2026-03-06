@@ -6,9 +6,9 @@ const prisma = new PrismaClient()
 async function main() {
   const passwordHash = await bcrypt.hash('password123', 10)
   const user = await prisma.user.upsert({
-    where: { email: 'demo@thr.com' },
+    where: { email: 'insanulakbar@thr.com' },
     update: {},
-    create: { name: 'Ahmad Rizki', email: 'demo@thr.com', passwordHash },
+    create: { name: 'Insanul Akbar', email: 'insanulakbar@thr.com', passwordHash },
   })
 
   await prisma.transaction.createMany({
@@ -42,7 +42,7 @@ async function main() {
     ],
   })
 
-  console.log('Seed berhasil! Login: demo@thr.com / password123')
+  console.log('Seed berhasil! Login: insanulakbar@thr.com / password123')
 }
 
 main().catch(console.error).finally(() => prisma.$disconnect())

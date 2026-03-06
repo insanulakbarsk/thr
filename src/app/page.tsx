@@ -7,7 +7,7 @@ export default function HomePage() {
   const router = useRouter()
   const [mode, setMode] = useState<'login' | 'register'>('login')
   const [loading, setLoading] = useState(false)
-  const [form, setForm] = useState({ name: '', email: 'demo@thr.com', password: 'password123' })
+  const [form, setForm] = useState({ name: '', email: 'email@thr.com', password: '123' })
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -57,7 +57,7 @@ export default function HomePage() {
             <div>
               <label className="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1.5">Nama Lengkap</label>
               <input required value={form.name} onChange={e => setForm({ ...form, name: e.target.value })}
-                placeholder="Ahmad Rizki" className="input-dark" />
+                placeholder="Nama Anda" className="input-dark" />
             </div>
           )}
           <div>
@@ -68,15 +68,12 @@ export default function HomePage() {
           <div>
             <label className="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1.5">Password</label>
             <input type="password" required minLength={6} value={form.password}
-              onChange={e => setForm({ ...form, password: e.target.value })} placeholder="••••••••" className="input-dark" />
+              onChange={e => setForm({ ...form, password: e.target.value })} placeholder="" className="input-dark" />
           </div>
           <button type="submit" disabled={loading} className="btn-primary w-full mt-2" style={{ padding: '14px' }}>
             {loading ? 'Memproses...' : mode === 'login' ? 'Masuk' : 'Buat Akun'}
           </button>
         </form>
-        <p className="text-center text-slate-600 text-xs mt-5">
-          Demo: <code className="text-slate-400">demo@thr.com</code> / <code className="text-slate-400">password123</code>
-        </p>
       </div>
     </div>
   )
