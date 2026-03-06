@@ -62,12 +62,12 @@ export default function HomePage() {
           )}
           <div>
             <label className="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1.5">Email</label>
-            <input type="email" required value={form.email} onChange={e => setForm({ ...form, email: e.target.value })}
+            <input type="email" required onChange={e => setForm({ ...form, email: e.target.value })}
               placeholder="email@example.com" className="input-dark" />
           </div>
           <div>
             <label className="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1.5">Password</label>
-            <input type="password" required minLength={6} value={form.password}
+            <input type="password" required minLength={6} 
               onChange={e => setForm({ ...form, password: e.target.value })} placeholder="" className="input-dark" />
           </div>
           <button type="submit" disabled={loading} className="btn-primary w-full mt-2" style={{ padding: '14px' }}>
