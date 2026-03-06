@@ -1,0 +1,62 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* { box-sizing: border-box; }
+
+body {
+  background: #0f172a;
+  color: #f1f5f9;
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #1e293b; }
+::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
+
+@layer components {
+  .input-dark {
+    @apply w-full px-4 py-3 rounded-xl text-slate-100 text-sm outline-none transition-all;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+  .input-dark:focus {
+    border-color: #f59e0b;
+    box-shadow: 0 0 0 2px rgba(245,158,11,0.15);
+  }
+  .input-dark option {
+    background: #1e293b;
+    color: #f1f5f9;
+  }
+  .card {
+    @apply rounded-2xl p-6;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.07);
+  }
+  .btn-primary {
+    @apply px-5 py-3 rounded-xl font-semibold text-sm transition-all cursor-pointer;
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    color: #0f172a;
+    border: none;
+  }
+  .btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
+  .btn-primary:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+  .nav-item {
+    @apply w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all text-left cursor-pointer;
+    color: #64748b;
+    background: transparent;
+    border: none;
+  }
+  .nav-item:hover { background: rgba(255,255,255,0.05); color: #f1f5f9; }
+  .nav-item.active { background: rgba(245,158,11,0.15); color: #f59e0b; }
+  .progress-track {
+    @apply w-full rounded-full overflow-hidden;
+    background: rgba(255,255,255,0.07);
+    height: 8px;
+  }
+  .progress-bar {
+    height: 100%;
+    border-radius: 999px;
+    transition: width 0.5s ease;
+  }
+}

@@ -1,0 +1,67 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            Int            @id @default(autoincrement())
+  name          String
+  email         String         @unique
+  passwordHash  String         @map("password_hash")
+  createdAt     DateTime       @default(now()) @map("created_at")
+  transactions  Transaction[]
+  budgets       Budget[]
+  zakats        Zakat[]
+  notifications Notification[]
+  @@map("users")
+}
+
+model Transaction {
+  id          Int      @id @default(autoincrement())
+  userId      Int      @map("user_id")
+  amount      Decimal  @db.Decimal(15, 2)
+  category    String
+  type        String
+  description String
+  date        DateTime
+  createdAt   DateTime @default(now()) @map("created_at")
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  @@map("transactions")
+}
+
+model Budget {
+  id              Int     @id @default(autoincrement())
+  userId          Int     @map("user_id")
+  category        String
+  budgetAmount    Decimal @db.Decimal(15, 2) @map("budget_amount")
+  allocatedAmount Decimal @db.Decimal(15, 2) @default(0) @map("allocated_amount")
+  user            User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  @@map("budgets")
+}
+
+model Zakat {
+  id        Int      @id @default(autoincrement())
+  userId    Int      @map("user_id")
+  type      String
+  amount    Decimal  @db.Decimal(15, 2)
+  jiwa      Int?
+  status    String   @default("paid")
+  date      DateTime
+  createdAt DateTime @default(now()) @map("created_at")
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  @@map("zakat")
+}
+
+model Notification {
+  id        Int      @id @default(autoincrement())
+  userId    Int      @map("user_id")
+  message   String   @db.Text
+  status    String   @default("unread")
+  createdAt DateTime @default(now()) @map("created_at")
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  @@map("notifications")
+}
