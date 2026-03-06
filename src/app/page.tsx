@@ -73,6 +73,10 @@ export default function HomePage() {
           <button type="submit" disabled={loading} className="btn-primary w-full mt-2" style={{ padding: '14px' }}>
             {loading ? 'Memproses...' : mode === 'login' ? 'Masuk' : 'Buat Akun'}
           </button>
+
+          <footer className="bg-slate-800 text-center text-sm text-slate-400 py-4">
+            <p className="text-xs">© 2026 Library Insanul. All rights reserved.</p>
+          </footer>
         </form>
       </div>
     </div>
